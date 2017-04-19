@@ -1,0 +1,1 @@
+var app = angular.module('sin.app', ['ngAnimate', 'ui.bootstrap']);

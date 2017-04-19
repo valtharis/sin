@@ -8,6 +8,7 @@ class Article extends Model
 {
     //
     protected $table="articles";
+    protected $fillable = ['title', 'content'];
     public function category(){
         return $this->belongsTo('App\Category');
     }

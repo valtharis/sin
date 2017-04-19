@@ -13,20 +13,21 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         //
-        $category = new Category();
-        $category->name = "Category1";
-        $category->save();
-        
-        $category = new Category();
-        $category->name = "Category2";
-        $category->save();
-        
-        $category = new Category();
-        $category->name = "Category3";
-        $category->save();
-        
-        $category = new Category();
-        $category->name = "Category4";
-        $category->save();
+//        $category = new Category();
+//        $category->name = "Category1";
+//        $category->save();
+//
+//        $category = new Category();
+//        $category->name = "Category2";
+//        $category->save();
+//
+//        $category = new Category();
+//        $category->name = "Category3";
+//        $category->save();
+//
+//        $category = new Category();
+//        $category->name = "Category4";
+//        $category->save();
+        factory(Category::class, 6)->create();
     }
 }
