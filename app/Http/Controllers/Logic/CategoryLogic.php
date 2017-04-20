@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Logic;
-use App\Category;
 
+use App\Category;
 
 class CategoryLogic{
 

@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
 use App\Http\Logic\ArticleLogic;
 use App\Http\Logic\CommentLogic;
-use Illuminate\Http\Request;
 use Validator;
 
-use App\Http\Requests;
 
 class XhrController extends Controller
 {

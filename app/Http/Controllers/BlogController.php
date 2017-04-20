@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
-use App\Category;
 use App\Composers\ArticlesPageComposer;
 use App\Http\Logic\ArticleLogic;
 use App\Http\Logic\CategoryLogic;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 
 class BlogController extends Controller
 {
@@ -29,7 +24,7 @@ class BlogController extends Controller
         if(!is_null($id)){
             return view('blog.category');
         }
-        $categories = Category::all();
+        $categories = $this->categoryLogic->get();
         $data = [
             'categories'=>$categories
         ];
@@ -39,13 +34,13 @@ class BlogController extends Controller
     public function article(){
         $id = request()->route("id");
         if(!is_null($id)){
-            $articles = Article::find($id);
+            $articles = $this->articleLogic->get($id);
             $data = [
                 'article'=>$articles
             ];
             return view('blog.article', $data);
         }
-        $articles = Article::all();
+        $articles = $this->categoryLogic->get();
         $data = [
             'articles'=>$this->articleLogic->makeShort($articles)
         ];

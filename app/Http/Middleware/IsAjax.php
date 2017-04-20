@@ -10,7 +10,7 @@ class IsAjaxMiddleware
     {
 
         if (!$request->ajax()) {
-            return response('', 404);
+            return abort(404);
         }
 
         return $next($request);
