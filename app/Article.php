@@ -17,4 +17,15 @@ class Article extends Model
     {
         return $this->hasMany('App\Comment', 'article_id');
     }
+
+    public static function newFromStd(\stdClass $std, $fill = ['*'], $exists = true)
+    {
+        $instance = new static;
+        $values = ($fill == ['*'])
+            ? (array) $std
+            : array_intersect_key( (array) $std, array_flip($fill));
+        $instance->setRawAttributes($values, true);
+        $instance->exists = $exists;
+        return $instance;
+    }
 }

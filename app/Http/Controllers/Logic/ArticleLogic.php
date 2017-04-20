@@ -4,6 +4,7 @@ namespace App\Http\Logic;
 use App\Article;
 use App\Category;
 use Illuminate\Support\Collection;
+use DB;
 
 
 class ArticleLogic
@@ -23,7 +24,8 @@ class ArticleLogic
         $container = Category::find($category_id);
         $obj->fill($data);
         $obj->category()->associate($container);
-        return $obj->save();
+        $obj->save();
+        return $obj;
     }
 
     public function update($id, $data, $category_id = null)
@@ -60,6 +62,27 @@ class ArticleLogic
             return $articles;
         }
         return null;
+    }
+
+    public function getComments($id){
+        $article = Article::find($id);
+        if(!is_null($article)){
+            return $article->comments;
+        }
+        return new Collection();
+    }
+
+    public function search($phrase){
+        $phrase = trim($phrase);
+        $results = DB::table('articles')
+            ->orWhere('title', 'LIKE', '%'.$phrase.'%')
+            ->orWhere('content', 'LIKE', '%'.$phrase.'%')
+            ->get();
+        $collection = new Collection();
+        foreach ($results as $result){
+            $collection->push(Article::newFromStd($result));
+        }
+        return $collection;
     }
 
 }

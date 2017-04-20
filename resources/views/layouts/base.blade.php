@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,700&amp;subset=latin-ext"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}">
     @yield('css')
 </head>
 <body ng-app="sin.app">
@@ -44,11 +43,12 @@
                     {{--</ul>--}}
                     {{--</li>--}}
                 </ul>
-                <form class="navbar-form navbar-right" role="search">
+                <form action="{{route("post.blog.search")}}" method="post" class="navbar-form navbar-right" role="search">
+                    {{csrf_field()}}
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" name="search" placeholder="What are you looking for?">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default">Search</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{route("get.manage.home")}}">Manage</a></li>

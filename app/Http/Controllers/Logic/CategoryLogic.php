@@ -15,7 +15,8 @@ class CategoryLogic{
     public function create($data){
         $obj = new Category();
         $obj->fill($data);
-        return $obj->save();
+        $obj->save();
+        return $obj;
     }
 
     public function update($id, $data){

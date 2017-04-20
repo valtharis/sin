@@ -16,6 +16,8 @@ Route::group(['middlewareGroups' => ['web']], function () {
     Route::get('/', array('as' => 'get.blog.home', 'uses' => 'BlogController@index'));
     Route::get('category/{id?}', array('as' => 'get.blog.category', 'uses' => 'BlogController@category'));
     Route::get('article/{id?}', array('as' => 'get.blog.article', 'uses' => 'BlogController@article'));
+    Route::post('search', array('as' => 'post.blog.search', 'uses' => 'BlogController@postSearch'));
+    Route::get('search', array('as' => 'get.blog.search', 'uses' => 'BlogController@getSearch'));
 
     Route::group(['prefix' => 'manage'], function () {
         Route::get('/', array('as' => 'get.manage.home', 'uses' => 'ManageController@index'));
@@ -33,7 +35,12 @@ Route::group(['middlewareGroups' => ['web']], function () {
     });
 
     Route::group(['prefix' => 'xhr', 'middleware' => ['ajax']], function () {
-
+        Route::get('/comment/{id?}', array('as' => 'xhr.get.blog.comment', 'uses' => 'XhrController@getComment'));
+        Route::post('/comment', array('as' => 'xhr.post.blog.comment', 'uses' => 'XhrController@storeComment'));
+        Route::delete('/comment/{id}', array('as' => 'xhr.delete.blog.comment', 'uses' => 'XhrController@deleteComment'));
+        Route::put('/comment/{id}/like', array('as' => 'xhr.put.blog.comment.like', 'uses' => 'XhrController@putCommentLike'));
+        Route::get('/article/{id}/comment', array('as' => 'xhr.get.blog.article.comment', 'uses' => 'XhrController@getCommentByArticle'));
+        Route::post('/article/{id}/comment', array('as' => 'xhr.post.blog.article.comment', 'uses' => 'XhrController@postCommentArticle'));
     });
 
 

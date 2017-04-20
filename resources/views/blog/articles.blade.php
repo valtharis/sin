@@ -12,7 +12,11 @@
                         <h2><a href="{{route("get.blog.article", ["id"=>$item->id])}}"> {{$item->title}}</a></h2>
                         <p>{{$item->content}}</p>
                         <p><a class="btn btn-secondary" href="{{route("get.blog.article", ["id"=>$item->id])}}"
-                              role="button">Read more &raquo;</a></p>
+                              role="button">Read more &raquo;</a>
+                            @if($item->comments()->count()>0)
+                                <span class="text-muted">comments</span>&nbsp;<span class="badge">{{$item->comments()->count()}}</span>
+                            @endif
+                        </p>
                     </div>
                 @endforeach
             </div>

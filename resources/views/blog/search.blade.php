@@ -2,13 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <a href="{{route("get.blog.category")}}" class="btn btn-default">Back to categories</a>
-            </div>
-        </div>
         <div class="page-header">
-            <h3>{{$category->name}}</h3>
+            <h3>({{$size}}) Result(s) for <em>'{{$phrase}}'</em> </h3>
         </div>
         @foreach($rows as $key => $row)
             <div class="row">

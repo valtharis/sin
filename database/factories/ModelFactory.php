@@ -28,9 +28,19 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Article::class, function (Faker\Generator $faker) {
+    $faker->addProvider(new Faker\Provider\pl_PL\Text($faker));
     return [
-        'title' => $faker->sentences(random_int(1,2), true),
-        'content' => $faker->sentences(random_int(60, 120), true),
+        'title' => $faker->realText(random_int(32, 64), true),
+        'content' => $faker->realText(random_int(2500, 7500), true),
         'category_id' => \App\Category::inRandomOrder()->first()->id
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+    return [
+        'article_id' => \App\Article::inRandomOrder()->first()->id,
+        'author' => $faker->firstName." ".$faker->lastName,
+        'content' => $faker->sentences(random_int(2, 6), true),
+        'likes_count' => random_int(0, 30)
     ];
 });
